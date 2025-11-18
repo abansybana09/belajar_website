@@ -1,0 +1,124 @@
+:root {
+  --brand-bg: #faebd7; /* Antique White */
+  --brown-dark: #5b3a29;
+  --brown-medium: #8b5e3c;
+  --brown-light: #d9b99a;
+  --white: #ffffff;
+  --muted: #6b5e57;
+  --glass: rgba(255,255,255,0.6);
+  --max-width: 1100px;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: linear-gradient(180deg, var(--brand-bg) 0%, #fffaf0 100%);
+  color: var(--brown-dark);
+  font-family: var(--font-poppins), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3 { color: var(--brown-dark); margin:0 0 8px }
+h1 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); line-height:1.05 }
+h2 { font-size: 1.25rem }
+p { color: var(--muted); margin:0 0 12px }
+
+/* Buttons */
+.btn { display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:10px; font-weight:600; text-decoration:none }
+.btn-primary { background: linear-gradient(180deg,var(--brown-medium),var(--brown-dark)); color:var(--white); box-shadow:0 8px 24px rgba(91,58,41,0.12) }
+.btn-ghost { background:transparent; border:1px solid rgba(91,58,41,0.08); color:var(--brown-dark) }
+
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Navbar */
+.nav {
+  background: linear-gradient(90deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  gap: 12px;
+  border-bottom: 1px solid rgba(91,58,41,0.06);
+}
+.nav .brand {
+  display:flex; align-items:center; gap:12px;
+}
+.brand .logo {
+  width:48px; height:48px; border-radius:8px; background:var(--brown-medium); display:inline-block;
+}
+.nav a { color: var(--brown-dark); text-decoration:none; font-weight:600 }
+.nav .links { display:flex; gap:12px; align-items:center }
+.nav .menu-toggle { display:none; }
+.nav .links.open { display:flex; }
+
+/* Hero */
+.hero { padding:36px 0; display:flex; align-items:center; gap:28px }
+.hero .col { flex:1 }
+.hero h1 { margin:0 0 12px; color:var(--brown-dark) }
+.hero p { margin:0 0 18px; color:var(--muted) }
+.hero .cta { padding:10px 16px; border-radius:10px }
+.hero .hero-card { background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); padding:18px; border-radius:14px; box-shadow:0 12px 36px rgba(91,58,41,0.08) }
+.hero img { width:100%; max-width:540px; border-radius:12px; box-shadow:0 12px 30px rgba(91,58,41,0.12) }
+
+
+/* Cards */
+.grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px }
+.card { background:var(--white); border-radius:12px; padding:12px; box-shadow:0 6px 18px rgba(91,58,41,0.06); display:flex; flex-direction:column; gap:8px; transition:transform 220ms ease, box-shadow 220ms ease }
+.card:hover { transform:translateY(-6px); box-shadow:0 18px 40px rgba(91,58,41,0.12) }
+.card img { width:100%; height:160px; object-fit:cover; border-radius:8px }
+.card .title { font-weight:700; color:var(--brown-dark) }
+.card .price { color:var(--brown-medium); font-weight:600 }
+.card .order { margin-top:auto; background:var(--brown-medium); color:white; border:none; padding:8px 10px; border-radius:8px }
+
+/* Section heading */
+.section { padding:28px 0 }
+.section h2 { margin-bottom:10px; font-size:1.4rem }
+
+
+/* Carousel (simple) */
+.carousel { position:relative; overflow:hidden; border-radius:12px }
+.carousel .slides { display:flex; transition:transform 0.6s ease }
+.carousel img { width:100%; height:300px; object-fit:cover }
+
+/* Floating WhatsApp button */
+.whatsapp-fab { position:fixed; right:16px; bottom:18px; z-index:60; background:#25D366; color:white; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(37,211,102,0.18); text-decoration:none }
+
+/* Footer */
+.site-footer { padding:28px 0; background:linear-gradient(180deg, rgba(91,58,41,0.03), rgba(255,255,255,0.02)); margin-top:36px }
+.site-footer .col { flex:1 }
+
+/* Animations: simplified to avoid SSR/CSR mismatch in dev — enable if toggling from client is used */
+.fade-up { opacity:1; transform:none; transition:none }
+.fade-up.visible { opacity:1; transform:none }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr) }
+  .hero { flex-direction:column-reverse; align-items:flex-start }
+}
+@media (max-width: 420px) {
+  .grid { grid-template-columns: 1fr }
+  .hero h1 { font-size:1.6rem }
+  .hero img { max-width:100%; height:auto }
+  .nav { padding:10px }
+  .nav .menu-toggle { display:inline-flex; background:transparent; border:none; font-size:20px }
+  .nav .links { display:none }
+  .nav .links.open { display:flex; flex-direction:column; position:absolute; top:64px; right:16px; background:var(--brand-bg); padding:12px; border-radius:8px; box-shadow:0 8px 20px rgba(0,0,0,0.08) }
+}
+
+/* Small devices <=400px tweaks */
+@media (max-width: 400px) {
+  .nav .links { display:none }
+  .brand .logo { width:40px; height:40px }
+  .container { padding:0 12px }
+}
+

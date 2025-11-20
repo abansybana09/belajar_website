@@ -31,6 +31,11 @@ p { color: var(--muted); margin:0 0 12px }
 .btn-primary { background: linear-gradient(180deg,var(--brown-medium),var(--brown-dark)); color:var(--white); box-shadow:0 8px 24px rgba(91,58,41,0.12) }
 .btn-ghost { background:transparent; border:1px solid rgba(91,58,41,0.08); color:var(--brown-dark) }
 
+/* Controls (filter chips / buttons) */
+.controls { display:flex; gap:8px; align-items:center }
+.controls .btn { padding:8px 10px; border-radius:10px; font-size:0.95rem }
+.controls .btn[aria-pressed="true"] { box-shadow:0 8px 20px rgba(91,58,41,0.08); background: linear-gradient(180deg,var(--brown-medium),var(--brown-dark)); color:var(--white); border: none }
+
 
 .container {
   max-width: var(--max-width);
@@ -93,8 +98,40 @@ p { color: var(--muted); margin:0 0 12px }
 .whatsapp-fab { position:fixed; right:16px; bottom:18px; z-index:60; background:#25D366; color:white; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(37,211,102,0.18); text-decoration:none }
 
 /* Footer */
-.site-footer { padding:28px 0; background:linear-gradient(180deg, rgba(91,58,41,0.03), rgba(255,255,255,0.02)); margin-top:36px }
-.site-footer .col { flex:1 }
+.site-footer {
+  padding:32px 0 18px;
+  background: linear-gradient(180deg, rgba(91,58,41,0.03), rgba(255,255,255,0.02));
+  margin-top:36px;
+  border-top: 1px solid rgba(91,58,41,0.04);
+}
+
+.site-footer .footer-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding-bottom: 18px;
+}
+
+.footer-brand { display:flex; gap:12px; align-items:center; flex:1 1 240px }
+.footer-brand .logo { width:56px; height:56px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:var(--brown-medium); color:var(--white); font-size:22px }
+
+.footer-grid { display:flex; gap:20px; flex:2 1 600px; flex-wrap:wrap }
+.footer-col { min-width:180px; flex:1; }
+.footer-col h4 { margin:0 0 8px; font-size:1rem; color:var(--brown-dark) }
+.footer-col p, .footer-col a, .footer-col li { color:var(--muted); margin:0 0 8px; font-size:0.95rem }
+.footer-col a { color:var(--brown-dark); text-decoration:none; border-bottom:1px dashed rgba(91,58,41,0.04) }
+.footer-col a:hover { color:var(--brown-medium) }
+
+.social-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px }
+.social-list li a { display:inline-flex; gap:8px; align-items:center }
+
+.footer-bottom { text-align:center; color:var(--muted); font-size:0.9rem; padding:12px 0 6px }
+
+@media (max-width: 900px) {
+  .site-footer .footer-inner { flex-direction:column; align-items:flex-start }
+  .footer-grid { width:100%; }
+  .footer-brand { width:100%; }
+}
 
 /* Animations: simplified to avoid SSR/CSR mismatch in dev — enable if toggling from client is used */
 .fade-up { opacity:1; transform:none; transition:none }

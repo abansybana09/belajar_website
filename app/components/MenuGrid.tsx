@@ -12,11 +12,26 @@ const sample = [
 
 export default function MenuGrid() {
   return (
-    <section className="container">
-      <h2 style={{marginBottom:12}}>Menu Kami</h2>
-      <div className="grid">
+    <section className="section container" aria-labelledby="menu-heading">
+      <header style={{display:'flex', justifyContent:'space-between', alignItems:'center', gap:16, marginBottom:16}}>
+        <div>
+          <h2 id="menu-heading">Menu Kami</h2>
+          <p style={{margin:0, color:'var(--muted)'}}>Pilihan enak & segar untuk menemani hari Anda.</p>
+        </div>
+
+        <div className="controls" role="group" aria-label="Filter menu">
+          <button className="btn btn-ghost" aria-pressed="true">Semua</button>
+          <button className="btn btn-ghost">Manis</button>
+          <button className="btn btn-ghost">Gurih</button>
+          <button className="btn btn-ghost">Minuman</button>
+        </div>
+      </header>
+
+      <div className="grid" role="list">
         {sample.map((m) => (
-          <MenuCard key={m.name} name={m.name} price={m.price} img={m.img} desc={m.desc} />
+          <div key={m.name} role="listitem">
+            <MenuCard name={m.name} price={m.price} img={m.img} desc={m.desc} />
+          </div>
         ))}
       </div>
     </section>
